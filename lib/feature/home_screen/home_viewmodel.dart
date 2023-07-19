@@ -3,7 +3,7 @@ import 'package:media_probe_app/core/init/injection.dart';
 import 'package:media_probe_app/core/init/network/article_service/i_article_service.dart';
 import 'package:media_probe_app/core/utils/route.dart';
 import 'package:media_probe_app/core/utils/route_manager.dart';
-import 'package:media_probe_app/feature/home_screen/model/artice_item_model.dart';
+import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/feature/viewmodel/base_view_model.dart';
 
 class HomeViewModel extends BaseViewModel {
@@ -12,37 +12,24 @@ class HomeViewModel extends BaseViewModel {
     _init();
   }
 
+  List<MostPopularArticleDto> articles = [];
+
   void _init() {
-    Future.wait([
-      serviceLocator<IArticleService>().getArticles(),
-    ]);
+    Future.wait([_getArticles()]);
+  }
+
+  Future<List<MostPopularArticleDto>> _getArticles() async {
+    final response = await serviceLocator<IArticleService>().getArticles();
+    articles = response.fold((failure) => articles, (data) {
+      articles = data;
+      return articles;
+    });
+    refreshView();
+    return articles;
   }
 
   void goToDetailPage() {
+    // TODO: hata var. İlgilen
     Go.to.page(detailPageRoute);
   }
-
-  // TODO: API'den alınacak
-  List<ArticleItemModel> articleList = <ArticleItemModel>[
-    ArticleItemModel(
-      articeTitle: "Article Title Article TitleArticle TitleArticle Title",
-      articleSubtitle:
-          "Article Subtitle Article Subtitle Article Subtitle Article SubtitleArticle Subtitle Article SubtitleArticleSubtitleArticleSubtitleArticleSubtitle",
-    ),
-    ArticleItemModel(
-      articeTitle: "Article Title Article TitleArticle TitleArticle Title",
-      articleSubtitle:
-          "Article Subtitle Article Subtitle Article Subtitle Article SubtitleArticle Subtitle Article SubtitleArticleSubtitleArticleSubtitleArticleSubtitle",
-    ),
-    ArticleItemModel(
-      articeTitle: "Article Title Article TitleArticle TitleArticle Title",
-      articleSubtitle:
-          "Article Subtitle Article Subtitle Article Subtitle Article SubtitleArticle Subtitle Article SubtitleArticleSubtitleArticleSubtitleArticleSubtitle",
-    ),
-    ArticleItemModel(
-      articeTitle: "Article Title Article TitleArticle TitleArticle Title",
-      articleSubtitle:
-          "Article Subtitle Article Subtitle Article Subtitle Article SubtitleArticle Subtitle Article SubtitleArticleSubtitleArticleSubtitleArticleSubtitle",
-    ),
-  ];
 }
