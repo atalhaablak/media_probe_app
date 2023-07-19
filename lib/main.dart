@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:media_probe_app/core/init/injection.dart';
 import 'package:media_probe_app/core/init/network/article_service/i_article_service.dart';
+import 'package:media_probe_app/core/keys/global_key.dart';
+import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/feature/detail_screen/detail_viewmodel.dart';
 import 'package:media_probe_app/feature/home_screen/home_screen.dart';
 import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
@@ -35,6 +37,7 @@ class MediaProbeApp extends StatelessWidget {
           SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         }
         return MaterialApp(
+          color: context.baseBackgroundColor,
           title: 'Media Probe App',
           theme: ThemeData(),
           home: const HomeScreen(),
