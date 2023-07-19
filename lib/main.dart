@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:media_probe_app/core/init/injection.dart';
+import 'package:media_probe_app/core/init/network/article_service/i_article_service.dart';
+import 'package:media_probe_app/feature/detail_screen/detail_viewmodel.dart';
 import 'package:media_probe_app/feature/home_screen/home_screen.dart';
+import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
+import 'package:media_probe_app/feature/viewmodel/base_view_model.dart';
+import 'package:media_probe_app/core/init/injection.dart' as locator;
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MediaProbeApp());
+  locator.init();
+  runApp(MultiProvider(
+    providers: [
+      // ChangeNotifierProvider( // TODO: Thema için
+      //   create: (context) => ThemeNotifier(),
+      // ),
+      ChangeNotifierProvider<BaseViewModel>(create: ((_) => locator.serviceLocator())),
+      ChangeNotifierProvider<DetailViewModel>(create: ((context) => DetailViewModel())),
+      ChangeNotifierProvider<HomeViewModel>(create: ((context) => HomeViewModel())),
+    ],
+    child: const MediaProbeApp(),
+  ));
 }
 
 class MediaProbeApp extends StatelessWidget {
@@ -18,9 +36,7 @@ class MediaProbeApp extends StatelessWidget {
         }
         return MaterialApp(
           title: 'Media Probe App',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
+          theme: ThemeData(),
           home: const HomeScreen(),
         );
       },
