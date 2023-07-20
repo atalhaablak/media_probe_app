@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:media_probe_app/core/keys/global_key.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/utils/router.dart';
-import 'package:media_probe_app/core/utils/screen_size.dart';
 import 'package:media_probe_app/feature/home_screen/home_screen.dart';
 import 'package:media_probe_app/core/init/injection.dart' as locator;
 
@@ -17,7 +16,6 @@ class MediaProbeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenSize().screenSize = MediaQuery.of(context).size;
     return OrientationBuilder(
       builder: (context, orientation) {
         if (orientation == Orientation.landscape) {

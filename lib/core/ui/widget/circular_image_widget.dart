@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:media_probe_app/core/extensions/num_extension.dart';
 import 'package:media_probe_app/core/extensions/string_extension.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
+import 'package:provider/provider.dart';
 
 // TODO: CachedNetwork Image Kullanılacak
 
@@ -12,7 +13,7 @@ class CircularImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(36.r),
+      borderRadius: BorderRadius.circular(16.r),
       child: imageUrl.getValueOrDefault.isNotEmpty
           ? Image.network(imageUrl.getValueOrDefault,
               errorBuilder: (context, error, stackTrace) => Container(

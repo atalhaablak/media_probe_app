@@ -4,5 +4,4 @@ import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dt
 
 abstract class IArticleService {
   Future<Either<Failure, List<MostPopularArticleDto>>> getArticles();
-  Future<String> getArticlesString({required String path});
 }

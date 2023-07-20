@@ -8,6 +8,7 @@ import 'package:media_probe_app/core/ui/widget/drawer_widget.dart';
 import 'package:media_probe_app/core/utils/route.dart';
 import 'package:media_probe_app/core/utils/route_manager.dart';
 import 'package:media_probe_app/core/utils/screen_size.dart';
+import 'package:media_probe_app/feature/detail_screen/model/detail_screen_arguments.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
 import 'package:media_probe_app/feature/home_screen/widget/articles_item_widget.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => serviceLocator<HomeViewModel>(),
       builder: (context, widget) {
+        ScreenSize().screenSize = MediaQuery.of(context).size;
         return Scaffold(
           // TODO: Base Screen oluşturulacak
           appBar: const BaseAppBar(
@@ -44,17 +46,11 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildArticleList(List<MostPopularArticleDto> articles) {
-    return Expanded(
-      // TODO: expanded olmadan çalışıyor mu bakılacak
-      child: ListView.builder(
-        itemCount: articles.itemCount,
-        itemBuilder: (context, index) {
-          return ArticlesItemWidget(
-            mostPopularArticleDto: articles[index],
-            onTap: () => Go.to.page(detailPageRoute),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: articles.itemCount,
+      itemBuilder: (context, index) {
+        return ArticlesItemWidget(mostPopularArticleDto: articles[index]);
+      },
     );
   }
 }
