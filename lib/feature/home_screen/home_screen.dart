@@ -8,6 +8,7 @@ import 'package:media_probe_app/core/ui/widget/drawer_widget.dart';
 import 'package:media_probe_app/core/utils/route.dart';
 import 'package:media_probe_app/core/utils/route_manager.dart';
 import 'package:media_probe_app/core/utils/screen_size.dart';
+import 'package:media_probe_app/core/viewmodel/viewmode_provider.dart';
 import 'package:media_probe_app/feature/detail_screen/model/detail_screen_arguments.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
@@ -19,9 +20,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => serviceLocator<HomeViewModel>(),
-      builder: (context, widget) {
+    return ViewModelProvider<HomeViewModel>(
+      builder: (homeViewModel) {
         ScreenSize().screenSize = MediaQuery.of(context).size;
         return Scaffold(
           // TODO: Base Screen oluşturulacak
