@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:media_probe_app/core/error/failure.dart';
-import 'package:media_probe_app/feature/home_screen/article_service/i_article_service.dart';
 import 'package:media_probe_app/core/init/network/endpoint.dart';
 import 'package:media_probe_app/core/init/network/network_manager/i_network_manager.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
+import 'package:media_probe_app/feature/home_screen/service/i_article_service.dart';
 
 class ArticleService extends IArticleService {
   final INetworkManager _networkManager;
@@ -17,7 +17,6 @@ class ArticleService extends IArticleService {
 
     return response.fold((failure) => Right(articles), (data) {
       articles = data["results"].map<MostPopularArticleDto>((json) => MostPopularArticleDto.fromJson(json)).toList();
-      // articles = Map<String, dynamic>.from(data);
       return Right(articles);
     });
   }

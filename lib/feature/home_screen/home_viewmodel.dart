@@ -1,10 +1,10 @@
 import 'package:media_probe_app/core/init/injection.dart';
-import 'package:media_probe_app/feature/home_screen/article_service/i_article_service.dart';
 import 'package:media_probe_app/core/ui/widget/ui_state.dart';
 import 'package:media_probe_app/core/utils/route.dart';
 import 'package:media_probe_app/core/utils/route_manager.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/core/viewmodel/base_viewmodel.dart';
+import 'package:media_probe_app/feature/home_screen/service/i_article_service.dart';
 
 class HomeViewModel extends BaseViewModel {
   HomeViewModel() {
