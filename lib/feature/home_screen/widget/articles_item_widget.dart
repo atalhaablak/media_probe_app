@@ -5,11 +5,14 @@ import 'package:media_probe_app/core/extensions/string_extension.dart';
 import 'package:media_probe_app/core/functions/edge_instes_functions.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
+import 'package:media_probe_app/core/ui/widget/app_widget_state_builder.dart';
 import 'package:media_probe_app/core/ui/widget/base_inkwell.dart';
 import 'package:media_probe_app/feature/detail_screen/detail_screen.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
 import 'package:provider/provider.dart';
+
+// TODO: Data yüklenirken shimmer eklenebilir
 
 class ArticlesItemWidget extends StatelessWidget {
   const ArticlesItemWidget({super.key});
@@ -18,24 +21,32 @@ class ArticlesItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<HomeViewModel>(
       builder: (context, homeViewModel, child) {
-        return Expanded(
-          child: ListView.builder(
-            itemCount: homeViewModel.articles.itemCount,
-            itemBuilder: (context, index) {
-              return _buildArticlesItem(
-                context: context,
-                mostPopularArticleDto: homeViewModel.articles[index],
-                onTap: () => Navigator.of(context).push(
-                  // TODO: Navigator yapısına bakılacak
-                  MaterialPageRoute(
-                    builder: (context) => const DetailScreen(),
-                  ),
-                ),
-              );
-            },
-          ),
-        );
+        return AppWidgetBuilderByState<List<MostPopularArticleDto>>(
+            response: homeViewModel.articles,
+            builder: (articles) {
+              return _buildArticleList(articles);
+            });
       },
+    );
+  }
+
+  Widget _buildArticleList(List<MostPopularArticleDto> articles) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: articles.itemCount,
+        itemBuilder: (context, index) {
+          return _buildArticlesItem(
+            context: context,
+            mostPopularArticleDto: articles[index],
+            onTap: () => Navigator.of(context).push(
+              // TODO: Navigator yapısına bakılacak
+              MaterialPageRoute(
+                builder: (context) => const DetailScreen(),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

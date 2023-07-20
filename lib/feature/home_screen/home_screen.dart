@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, widget) {
         ScreenSize().screenSize = MediaQuery.of(context).size;
         return Scaffold(
+          // TODO: Base Screen oluşturulacak
           drawer: const BaseDrawer(),
           appBar: const BaseAppBar(
             appBarTitle: AppBarTitles.homePage,
