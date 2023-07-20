@@ -7,7 +7,8 @@ import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
 import 'package:media_probe_app/core/ui/widget/app_widget_state_builder.dart';
 import 'package:media_probe_app/core/ui/widget/base_inkwell.dart';
-import 'package:media_probe_app/feature/detail_screen/detail_screen.dart';
+import 'package:media_probe_app/core/utils/route.dart';
+import 'package:media_probe_app/core/utils/route_manager.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -38,12 +39,7 @@ class ArticlesItemWidget extends StatelessWidget {
           return _buildArticlesItem(
             context: context,
             mostPopularArticleDto: articles[index],
-            onTap: () => Navigator.of(context).push(
-              // TODO: Navigator yapısına bakılacak
-              MaterialPageRoute(
-                builder: (context) => const DetailScreen(),
-              ),
-            ),
+            onTap: () => Go.to.page(detailPageRoute),
           );
         },
       ),

@@ -15,12 +15,11 @@ class Go implements PageRouteRepository {
 
   @override
   Future<dynamic> page(String routeName, {Object? arguments}) async {
-    Navigator.of(GlobalKey().currentContext!).pushNamed(routeName, arguments: arguments);
-    // if (GlobalContextKey.instance.currentNavigatorKey.currentState != null) {
-    //   return await GlobalContextKey.instance.globalKey.currentState!.pushNamed(routeName, arguments: arguments);
-    // } else {
-    //   currentStateNullError();
-    // }
+    if (GlobalContextKey.instance.globalKey.currentState != null) {
+      return await GlobalContextKey.instance.globalKey.currentState!.pushNamed(routeName, arguments: arguments);
+    } else {
+      currentStateNullError();
+    }
   }
 
   @override

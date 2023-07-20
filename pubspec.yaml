@@ -7,7 +7,6 @@ environment:
   sdk: ">=2.19.4 <3.0.0"
 
 dependencies:
-  connectivity_plus: 
   cupertino_icons: 
   dartz: 
   dio: 
