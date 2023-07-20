@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:media_probe_app/core/constant/app_constants.dart';
 import 'package:media_probe_app/core/extensions/string_extension.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
 import 'package:media_probe_app/core/ui/widget/ui_state.dart';
 
-class AppWidgetBuilderByState<T> extends StatelessWidget {
-  const AppWidgetBuilderByState({
+class ApiResponseBuilder<T> extends StatelessWidget {
+  const ApiResponseBuilder({
     Key? key,
     required this.response,
     required this.builder,

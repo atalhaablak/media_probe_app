@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:media_probe_app/core/error/failure.dart';
-import 'package:media_probe_app/core/init/network/article_service/i_article_service.dart';
+import 'package:media_probe_app/feature/home_screen/article_service/i_article_service.dart';
 import 'package:media_probe_app/core/init/network/endpoint.dart';
-import 'package:media_probe_app/core/init/network/service/i_network_manager.dart';
+import 'package:media_probe_app/core/init/network/network_manager/i_network_manager.dart';
 import 'package:media_probe_app/feature/home_screen/data/most_popular_article_dto.dart';
 
 class ArticleService extends IArticleService {
@@ -21,5 +20,12 @@ class ArticleService extends IArticleService {
       // articles = Map<String, dynamic>.from(data);
       return Right(articles);
     });
+  }
+
+  @override
+  Future<String> getArticlesString({required String path}) async {
+    Dio dio = Dio();
+    final response = await dio.get(path);
+    return response.data;
   }
 }

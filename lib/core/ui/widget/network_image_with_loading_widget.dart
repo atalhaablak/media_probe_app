@@ -9,10 +9,11 @@ class ImageNetworkWithLoadingWidget extends StatelessWidget {
 
   final String imageUrl;
 
+  // TODO: cached network image kullanılabilir
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      imageUrl, // Banner resmi burada
+      imageUrl,
       fit: BoxFit.cover,
       loadingBuilder: (context, child, loadingProgress) {
         return loadingProgress == null ? child : const Center(child: CircularProgressIndicator.adaptive());

@@ -2,12 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class BaseViewModel extends ChangeNotifier {
-  BaseViewModel() {
-    init();
-  }
-  //constructor override edilemediğinden init function yazıldı
-  void init() {}
+abstract class BaseViewModel extends ChangeNotifier {
   bool isLoading = false;
 
   var isOverlayLoadingStreamController = StreamController<bool>.broadcast();
@@ -19,6 +14,7 @@ class BaseViewModel extends ChangeNotifier {
     super.dispose();
   }
 
+  // ileride notifyListener'a farklı bir business logic eklenebilir.
   void refreshView() {
     notifyListeners();
   }

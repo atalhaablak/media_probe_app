@@ -3,26 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:media_probe_app/core/keys/global_key.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/utils/router.dart';
-import 'package:media_probe_app/feature/detail_screen/detail_viewmodel.dart';
+import 'package:media_probe_app/core/utils/screen_size.dart';
 import 'package:media_probe_app/feature/home_screen/home_screen.dart';
-import 'package:media_probe_app/feature/home_screen/home_viewmodel.dart';
-import 'package:media_probe_app/feature/viewmodel/base_view_model.dart';
 import 'package:media_probe_app/core/init/injection.dart' as locator;
-import 'package:provider/provider.dart';
 
 void main() {
   locator.init();
-  runApp(MultiProvider(
-    providers: [
-      // ChangeNotifierProvider( // TODO: Thema için
-      //   create: (context) => ThemeNotifier(),
-      // ),
-      ChangeNotifierProvider<BaseViewModel>(create: ((_) => locator.serviceLocator())),
-      ChangeNotifierProvider<DetailViewModel>(create: ((context) => DetailViewModel())),
-      ChangeNotifierProvider<HomeViewModel>(create: ((context) => HomeViewModel())),
-    ],
-    child: const MediaProbeApp(),
-  ));
+  runApp(const MediaProbeApp());
 }
 
 class MediaProbeApp extends StatelessWidget {
@@ -30,6 +17,7 @@ class MediaProbeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize().screenSize = MediaQuery.of(context).size;
     return OrientationBuilder(
       builder: (context, orientation) {
         if (orientation == Orientation.landscape) {

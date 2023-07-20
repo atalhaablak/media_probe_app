@@ -1,4 +1,6 @@
 import 'package:media_probe_app/core/data/dto/media_dto.dart';
+import 'package:media_probe_app/core/extensions/list_extension.dart';
+import 'package:media_probe_app/core/extensions/string_extension.dart';
 
 class MostPopularArticleDto {
   String? uri;
@@ -95,4 +97,6 @@ class MostPopularArticleDto {
     data['eta_id'] = etaId;
     return data;
   }
+
+  String? get firstImage => media.getValueOrDefault.first.mediaMetadata.getValueOrDefault.first.url;
 }
