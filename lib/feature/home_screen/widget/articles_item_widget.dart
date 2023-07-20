@@ -25,7 +25,7 @@ class ArticlesItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: REdgeInsets.all(20),
-      child: Container(
+      child: SizedBox(
         height: 120.h,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,8 +36,6 @@ class ArticlesItemWidget extends StatelessWidget {
             Expanded(
               child: _buildArticleInfo(mostPopularArticleDto, context),
             ),
-            // SizedBox(width: 16.w),
-            // _buildGoDetailButton(mostPopularArticleDto),
           ],
         ),
       ),
