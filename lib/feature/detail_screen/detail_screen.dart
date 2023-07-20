@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:media_probe_app/core/constant/app_bar_titles.dart';
 import 'package:media_probe_app/core/extensions/num_extension.dart';
 import 'package:media_probe_app/core/extensions/string_extension.dart';
+import 'package:media_probe_app/core/ui/widget/base_screen.dart';
 import 'package:media_probe_app/core/ui/widget/r_edge_instes.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
@@ -17,9 +19,10 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelProvider<HomeViewModel>(
       builder: (homeViewModel) {
-        return Scaffold(
-          backgroundColor: context.baseBackgroundColor,
-          body: CustomScrollView(
+        return BaseScreen(
+          screenName: AppBarTitles.articleDetails,
+          showAppBar: false,
+          child: CustomScrollView(
             slivers: [
               DetailScreenAppBar(
                 imageUrl: arguments.imageUrl.getValueOrDefault,
