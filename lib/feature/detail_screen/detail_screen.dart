@@ -56,7 +56,7 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  FlutterHtmlWidget _buildArticleFullText() {
+  Widget _buildArticleFullText() {
     return const FlutterHtmlWidget(
       data: MockData.mockData,
     );

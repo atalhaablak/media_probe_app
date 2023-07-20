@@ -3,6 +3,7 @@ import 'package:media_probe_app/core/constant/app_bar_titles.dart';
 import 'package:media_probe_app/core/extensions/num_extension.dart';
 import 'package:media_probe_app/core/ui/style/global_colors.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
+import 'package:media_probe_app/core/ui/widget/network_image_with_loading_widget.dart';
 
 class DetailScreenAppBar extends StatelessWidget {
   final String imageUrl;
@@ -22,18 +23,7 @@ class DetailScreenAppBar extends StatelessWidget {
         background: Stack(
           children: [
             Positioned.fill(
-              child: Image.network(
-                imageUrl, // Banner resmi burada
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: context.grey,
-                    child: Center(
-                      child: Icon(Icons.error_outline, color: context.white),
-                    ),
-                  );
-                },
-              ),
+              child: ImageNetworkWithLoadingWidget(imageUrl: imageUrl),
             ),
             Positioned(
               bottom: 10,
