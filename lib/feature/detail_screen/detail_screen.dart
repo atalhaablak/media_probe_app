@@ -13,9 +13,6 @@ class DetailScreen extends StatelessWidget {
   final DetailScreenArguments arguments;
   const DetailScreen({super.key, required this.arguments});
 
-  // TODO: Viewmodel provider
-  // TODO: BaseScreen
-
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<HomeViewModel>(

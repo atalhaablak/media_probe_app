@@ -3,6 +3,12 @@ import 'package:media_probe_app/core/extensions/string_extension.dart';
 import 'package:media_probe_app/core/ui/style/global_text_styles.dart';
 import 'package:media_probe_app/core/ui/widget/ui_state.dart';
 
+/*
+
+ API çağrılarına yanıtları işlemek için kullanılan bir yapı sunar. 
+
+ */
+
 class ApiResponseBuilder<T> extends StatelessWidget {
   const ApiResponseBuilder({
     Key? key,
