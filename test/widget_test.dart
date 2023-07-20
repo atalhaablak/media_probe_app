@@ -7,17 +7,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:media_probe_app/core/constant/app_bar_titles.dart';
 
 import 'package:media_probe_app/main.dart';
 
 void main() {
-  testWidgets('Home Page Test', (WidgetTester tester) async {
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MediaProbeApp());
 
     // Verify that our counter starts at 0.
-    expect(find.text(AppBarTitles.homePage), findsOneWidget);
+    expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
 
     // Tap the '+' icon and trigger a frame.
