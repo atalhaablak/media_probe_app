@@ -15,6 +15,9 @@ class DetailScreen extends StatelessWidget {
   final DetailScreenArguments arguments;
   const DetailScreen({super.key, required this.arguments});
 
+  /* Verilen endpoint response unda tam metin bulunamadığı için abstract basıldı. Fakat eski commitlere bakarsanız,
+  response da bulunan html linkinden sayfa daki metni html classlarını filtreleyerek alıp, ui'a basan yapıyı bulabilirsiniz. */
+
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<HomeViewModel>(
